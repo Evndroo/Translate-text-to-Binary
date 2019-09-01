@@ -16,5 +16,26 @@ namespace Binary
         {
             InitializeComponent();
         }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            if (txtName.Text == "")
+            {
+                MessageBox.Show("Enter your name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtName.Focus();
+            }
+            else {
+                txtResult.Text = "";
+                pnlResult.Visible = true;
+                string name = txtName.Text;
+                byte[] ASCIIValues = Encoding.ASCII.GetBytes(name);
+                foreach (byte b in ASCIIValues)
+                {
+                    txtResult.Text += Convert.ToString(b, 2).PadLeft(8, '0');
+
+
+                }
+            }
+        }        
     }
 }
